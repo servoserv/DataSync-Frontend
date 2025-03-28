@@ -34,4 +34,17 @@ export default defineConfig({
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
   },
+  proxy: {
+      '/api': {
+        target: process.env.VITE_API_URL || 'https://your-backend-url.onrender.com',
+        changeOrigin: true,
+        secure: true,
+      },
+      '/ws-api': {
+        target: process.env.VITE_API_URL || 'https://your-backend-url.onrender.com',
+        changeOrigin: true,
+        ws: true,
+        secure: true,
+      },
+    },
 });
