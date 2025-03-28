@@ -8,20 +8,27 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "@shared": path.resolve(__dirname, "./shared"),
-      "@assets": path.resolve(__dirname, "./attached_assets"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@pages": path.resolve(__dirname, "./src/pages"),
+      "@hooks": path.resolve(__dirname, "./src/hooks"),
+      "@lib": path.resolve(__dirname, "./src/lib"),
+      "@assets": path.resolve(__dirname, "./src/assets"),
+      "@shared": path.resolve(__dirname, "./src/shared"),
     }
   },
+  root: ".",
   build: {
     outDir: "dist",
     emptyOutDir: true
   },
   server: {
+    host: "0.0.0.0",
+    port: 5000,
     proxy: {
       '/api': {
-        target: process.env.VITE_API_URL || 'https://your-backend-url.onrender.com',
+        target: process.env.VITE_API_URL || 'http://localhost:5000',
         changeOrigin: true,
-        secure: true
+        secure: false
       }
     }
   }
